@@ -42,7 +42,7 @@ function UnmemoOnboarding({ owner }: { owner: SmartAccountSigner }) {
   const [gasManagerChecked, setGasManagerChecked] = useState(false);
   const { go, reset, currentStep } = useOnboardingOrchestrator(
     gasManagerChecked,
-    owner
+    owner,
   );
 
   const memberOnboardingMutation = useMutation<

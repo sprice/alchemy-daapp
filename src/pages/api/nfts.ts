@@ -16,7 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     if (!address) {
-      throw new Error('address is required')
+      throw new Error("address is required");
     }
 
     const contractAddress =
@@ -28,8 +28,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const response = await callEndpoint(
       "GET",
       `${getApiUrl(
-        chainId as string
-      )}/getNFTs/?owner=${address}&contractAddresses[]=${contractAddress}`
+        chainId as string,
+      )}/getNFTs/?owner=${address}&contractAddresses[]=${contractAddress}`,
     );
     return res.send(response);
   } catch (e) {

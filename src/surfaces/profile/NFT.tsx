@@ -12,7 +12,7 @@ export default function NFT({ address, tokenId, title, imageUrl }: NFTProps) {
   return (
     <Link
       href={`https://testnets.opensea.io/assets/mumbai/${address}/${Number(
-        tokenId
+        tokenId,
       )}`}
       target="_blank"
       rel="noopener noreferrer"

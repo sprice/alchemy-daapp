@@ -47,7 +47,7 @@ const NftSection: React.NamedExoticComponent<NFTsProps> = memo(
         )}
       </>
     );
-  }
+  },
 );
 
 export default NftSection;

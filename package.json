@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "npx prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },
   "dependencies": {
     "@alchemy/aa-accounts": "^0.1.1",
@@ -38,6 +39,7 @@
     "@typescript-eslint/parser": "^5.56.0",
     "eslint": "^8.36.0",
     "eslint-config-next": "^13.4.1",
+    "prettier": "^3.0.3",
     "typescript": "^5.0.2"
   },
   "ct3aMetadata": {

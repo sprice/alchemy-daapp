@@ -6,7 +6,7 @@ const RootScreen = dynamic(
   () => {
     return import("~/surfaces/root/RootScreen");
   },
-  { ssr: false }
+  { ssr: false },
 );
 
 const Root: NextPage = () => {

@@ -3,7 +3,7 @@ const key = (address: string, chainId: number) =>
 
 const smartAccountAddresses = (address: string, chainId: number) => {
   const scAddresses = JSON.parse(
-    localStorage.getItem(key(address, chainId)) ?? "[]"
+    localStorage.getItem(key(address, chainId)) ?? "[]",
   );
   return scAddresses;
 };
@@ -11,7 +11,7 @@ const smartAccountAddresses = (address: string, chainId: number) => {
 const addSmartContractAccount = (
   address: string,
   scAddress: string,
-  chainId: number
+  chainId: number,
 ) => {
   const k = key(address, chainId);
   const addresses = JSON.parse(localStorage.getItem(k) ?? "[]");
@@ -21,7 +21,7 @@ const addSmartContractAccount = (
 const removeSmartContractAccount = (
   address: string,
   scAddress: string,
-  chainId: number
+  chainId: number,
 ) => {
   const k = key(address, chainId);
   const scAddresses = JSON.parse(localStorage.getItem(k) ?? "[]");

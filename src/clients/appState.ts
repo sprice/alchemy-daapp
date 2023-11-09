@@ -44,7 +44,7 @@ export function useAppState(): AppState {
     }
     const scwAddresses = localSmartContractStore.smartAccountAddresses(
       address,
-      chainId
+      chainId,
     );
     if (scwAddresses.length === 0) {
       setState({

@@ -21,6 +21,6 @@ export const createMagicSigner = async () => {
 
   return new WalletClientSigner(
     magicClient,
-    "magic" // signerType
+    "magic", // signerType
   );
 };

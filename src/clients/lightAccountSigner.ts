@@ -15,7 +15,7 @@ type LightSmartAccountSignerResult =
 
 export function useLightAccountSigner(): LightSmartAccountSignerResult {
   const walletClientQuery = useWalletClient();
-  const signerType = "json-rpc"
+  const signerType = "json-rpc";
   // We need this to by pass a viem bug https://github.com/wagmi-dev/viem/issues/606
   const signMessage = useCallback(
     (data: string | Uint8Array) =>
@@ -26,7 +26,7 @@ export function useLightAccountSigner(): LightSmartAccountSignerResult {
         // @ts-ignore
         params: [toHex(data), walletClientQuery.data.account.address],
       }),
-    [walletClientQuery.data]
+    [walletClientQuery.data],
   );
   const signTypedData = useCallback(
     (data: SignTypedDataParams) =>
@@ -37,11 +37,11 @@ export function useLightAccountSigner(): LightSmartAccountSignerResult {
         // @ts-ignore
         params: [toHex(data), walletClientQuery.data.account.address],
       }),
-    [walletClientQuery.data]
+    [walletClientQuery.data],
   );
   const getAddress = useCallback(
     () => Promise.resolve(walletClientQuery.data!.account.address),
-    [walletClientQuery.data]
+    [walletClientQuery.data],
   );
   if (walletClientQuery.isLoading) {
     return {
@@ -49,5 +49,8 @@ export function useLightAccountSigner(): LightSmartAccountSignerResult {
       owner: undefined,
     };
   }
-  return { isLoading: false, owner: { signerType, signMessage, signTypedData, getAddress } };
+  return {
+    isLoading: false,
+    owner: { signerType, signMessage, signTypedData, getAddress },
+  };
 }

@@ -4,7 +4,7 @@ import { OwnedNFTsResponse } from "../declarations/api";
 export async function callEndpoint<T>(
   method: "GET" | "POST" | "PUT" | "DELETE",
   endpoint: string,
-  params?: Record<string, any>
+  params?: Record<string, any>,
 ): Promise<T> {
   try {
     switch (method) {
@@ -58,7 +58,7 @@ export async function callEndpoint<T>(
     throw new Error(
       response.data
         ? (response.data as { error: string })["error"]
-        : "Server error."
+        : "Server error.",
     );
   }
 }

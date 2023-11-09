@@ -46,12 +46,12 @@ export function initialStep(
   ownerAddress: `0x${string}`,
   client: PublicErc4337Client,
   chain: Chain,
-  useGasManager: boolean
+  useGasManager: boolean,
 ): OnboardingStep {
   const meta = metaForStepIdentifier(
     OnboardingStepIdentifier.INITIAL_STEP,
     {},
-    chain
+    chain,
   );
   return {
     ...meta,
@@ -69,7 +69,7 @@ export function initialStep(
 export function metaForStepIdentifier(
   step: OnboardingStepIdentifier,
   context: Partial<OnboardingContext>,
-  chain: Chain
+  chain: Chain,
 ) {
   switch (step) {
     case OnboardingStepIdentifier.INITIAL_STEP:

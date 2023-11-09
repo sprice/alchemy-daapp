@@ -28,7 +28,7 @@ import {
 
 async function pollForLambdaForComplete(
   lambda: () => Promise<boolean>,
-  txnMaxDurationSeconds: number = 20
+  txnMaxDurationSeconds: number = 20,
 ) {
   let txnRetryCount = 0;
   let receipt;
@@ -47,7 +47,7 @@ async function pollForLambdaForComplete(
 
 type OnboardingFunction = (
   context: Partial<OnboardingContext>,
-  appConfig: DAAppConfiguration
+  appConfig: DAAppConfiguration,
 ) => Promise<{
   nextStep: OnboardingStepIdentifier;
   addedContext: Partial<OnboardingContext>;
@@ -201,7 +201,7 @@ const onboardingStepHandlers: Record<
     localSmartContractStore.addSmartContractAccount(
       inMemOwnerAddress,
       context.smartAccountAddress,
-      context.chain?.id!
+      context.chain?.id!,
     );
     return {
       nextStep: OnboardingStepIdentifier.DONE,
@@ -219,7 +219,7 @@ const onboardingStepHandlers: Record<
 
 export function useOnboardingOrchestrator(
   useGasManager: boolean,
-  owner: SmartAccountSigner
+  owner: SmartAccountSigner,
 ) {
   // Setup initial data and state
   const { address: ownerAddress } = useAccount();
@@ -231,7 +231,7 @@ export function useOnboardingOrchestrator(
     const appConfig = daappConfigurations[chain.id];
     if (!appConfig) {
       throw new Error(
-        "Couldn't find a configuration for ap chain. Please connect to a valid chain first."
+        "Couldn't find a configuration for ap chain. Please connect to a valid chain first.",
       );
     }
     const client = createPublicErc4337Client({
@@ -241,16 +241,16 @@ export function useOnboardingOrchestrator(
     return { client, appConfig };
   }, [chain]);
   const [currentStep, updateStep] = useState<OnboardingStep>(
-    initialStep(owner!, ownerAddress!, client, chain!, useGasManager)
+    initialStep(owner!, ownerAddress!, client, chain!, useGasManager),
   );
   const [isLoading, setIsLoading] = useState(false);
 
   const reset = useCallback(
     () =>
       updateStep(
-        initialStep(owner!, ownerAddress!, client, chain!, useGasManager)
+        initialStep(owner!, ownerAddress!, client, chain!, useGasManager),
       ),
-    [ownerAddress, client, chain, useGasManager]
+    [ownerAddress, client, chain, useGasManager],
   );
 
   // Reset onboarding if key account and onboarding attributes change
@@ -263,7 +263,7 @@ export function useOnboardingOrchestrator(
       let inMemStep = currentStep;
       async function _updateStep(
         stepIdentifier: OnboardingStepIdentifier,
-        context: Partial<OnboardingContext>
+        context: Partial<OnboardingContext>,
       ) {
         const assembledContext = {
           ...inMemStep.context,
@@ -272,7 +272,7 @@ export function useOnboardingOrchestrator(
         const meta = await metaForStepIdentifier(
           stepIdentifier,
           context,
-          chain!
+          chain!,
         );
         const resolvedStep = {
           identifier: stepIdentifier,
@@ -295,7 +295,7 @@ export function useOnboardingOrchestrator(
       while (inMemStep.identifier !== OnboardingStepIdentifier.DONE) {
         await onboardingStepHandlers[inMemStep.identifier](
           inMemStep.context,
-          appConfig
+          appConfig,
         )
           .then((step) => _updateStep(step.nextStep, step.addedContext))
           .catch((e) => {

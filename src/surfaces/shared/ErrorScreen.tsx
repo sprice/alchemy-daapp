@@ -1,6 +1,6 @@
-import {Flex, Heading} from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 
-export function ErrorScreen({error}: {error?: string}) {
+export function ErrorScreen({ error }: { error?: string }) {
   return (
     <Flex
       width="100%"
